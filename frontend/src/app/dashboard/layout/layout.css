@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700&display=swap');
+
+
+
+/* Reemplaza las variables y estilos clave en tu styles.scss */
+
+:root {
+  --c-sidebar:       #1e3a5f;      /* azul medio, no tan oscuro */
+  --c-sidebar-hover: #2a5080;      /* hover visible */
+  --c-yellow:        #ffb703;      /* amarillo más vibrante */
+  --c-yellow-dim:    rgba(255,183,3,0.15);
+  --c-muted: #ffffff;      /* texto secundario más claro */
+  --c-light:         #f0f7ff;      /* texto principal claro */
+  --c-content:       #f5f7fa;
+}
+
+html, body { height: 100%; margin: 0; font-family: 'Nunito', sans-serif; }
+
+/* ── Contenedor principal ── */
+.conduces-container.mat-drawer-container {
+  height: 100vh !important;
+  width:  100vw  !important;
+  background: var(--c-content) !important;
+
+}
+
+/* ── Sidenav ── */
+.conduces-sidenav.mat-drawer {
+  width: 255px !important;
+  background: var(--c-sidebar) !important;
+  border-right: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-radius: 0 0 16px 0 !important;
+}
+
+/* ── Logo ── */
+.c-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px 20px;
+}
+
+.c-logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f5a623, #e8920a);
+  box-shadow: 0 4px 14px rgba(245,166,35,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.c-logo-icon .mat-icon {
+  color: #fff !important;
+  font-size: 22px !important;
+  width: 22px !important;
+  height: 22px !important;
+  line-height: 22px !important;
+}
+
+.c-logo-title {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.c-logo-sub {
+  font-size: 0.6rem;
+  color: var(--c-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  margin-top: 1px;
+}
+
+.c-divider {
+  height: 1px;
+  margin: 0 20px 8px;
+  background: linear-gradient(to right, rgba(245,166,35,0.5), transparent);
+}
+
+/* ── Navegación ── */
+.c-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 4px 10px;
+  gap: 2px;
+  overflow-y: auto;
+}
+
+.c-nav-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--c-muted);
+  margin: 10px 0 4px 10px;
+}
+
+/* Links de navegación — uso <a mat-button> para mejor control */
+.c-nav a.mat-button,
+.c-nav a.mat-focus-indicator {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  color: var(--c-muted) !important;
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  text-align: left !important;
+  transition: background 0.2s, color 0.2s, transform 0.15s !important;
+}
+
+/* El wrapper que genera Material — aquí está la clave */
+.c-nav a.mat-button .mat-button-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  padding: 10px 14px !important;
+  width: 100% !important;
+}
+
+.c-nav a.mat-button .mat-icon {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  line-height: 18px !important;
+  opacity: 1 !important;        /* quita el 0.6 que los apagaba */
+  color: #ffffff !important;    /* blanco */
+}
+.c-nav a .mat-icon {
+  color: #ffffff !important;
+}
+
+.c-nav a {
+  color: #ffffff !important;
+}
+
+.c-nav a.mat-button:hover {
+  background: var(--c-sidebar-hover) !important;
+  color: var(--c-light) !important;
+  transform: translateX(3px);
+}
+
+.c-nav a.mat-button:hover .mat-icon {
+  opacity: 1 !important;
+}
+
+.c-nav a.c-active {
+  background: var(--c-yellow-dim) !important;
+  color: var(--c-yellow) !important;
+  border-left: 3px solid var(--c-yellow) !important;
+  border-radius: 0 0 8px 0 !important;
+}
+
+.c-nav a.c-active .mat-icon {
+  color: var(--c-yellow) !important;
+  opacity: 1 !important;
+}
+
+/* ── Footer sidenav ── */
+.c-sidenav-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  background: rgba(0,0,0,0.18);
+  /* Al estar en flex-column y tener .c-nav con flex:1, este queda siempre abajo */
+}
+
+.c-sidenav-footer .mat-icon {
+  font-size: 15px !important;
+  width: 15px !important;
+  height: 15px !important;
+  color: var(--c-yellow) !important;
+}
+
+.c-sidenav-footer span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+/* ── Toolbar ── */
+.c-toolbar.mat-toolbar {
+  background: var(--c-sidebar) !important;
+  height: 60px !important;
+  min-height: 60px !important;
+  padding: 0 24px !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0;
+}
+
+.c-toolbar-icon.mat-icon {
+  color: var(--c-yellow) !important;
+  font-size: 26px !important;
+  width: 26px !important;
+  height: 26px !important;
+  margin-right: 10px;
+}
+
+.c-toolbar-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.c-toolbar-title {
+  font-family: 'Barlow Condensed', sans-serif !important;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.c-toolbar-sub {
+  font-size: 0.58rem;
+  color: var(--c-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+}
+
+/* ── User chip ── */
+.c-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 5px 14px 5px 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--c-light);
+  margin-right: 4px;
+}
+
+.c-user-chip .mat-icon {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  color: var(--c-yellow) !important;
+}
+
+/* ── Logout button ── */
+.c-logout-btn.mat-stroked-button {
+  color: #ffffff !important;  /* cambia var(--c-muted) por white */
+  border-color: rgba(250, 250, 250, 0.15) !important;
+  border-radius: 8px !important;
+  font-family: 'Nunito', sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+}
+
+
+.c-logout-btn {
+  color: #ffffff !important;
+}
+
+.c-logout-btn:hover {
+  background: rgba(255, 190, 0, 0.88) !important;
+  color: #f15e0d !important;
+  border-color: rgba(200, 143, 5, 0.94) !important;
+  transition: 0.4s ease;
+}
+
+
+
+
+
+.c-logout-btn.mat-stroked-button .mat-icon {
+  font-size: 16px !important;
+  margin-right: 4px;
+  color: white;
+}
+
+
+
+/* ── Área de contenido ── */
+.c-content {
+  padding: 28px;
+  background: var(--c-content);
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  border-top: 3px solid var(--c-yellow);
+}

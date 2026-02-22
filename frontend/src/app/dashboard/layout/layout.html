@@ -1,0 +1,78 @@
+<mat-sidenav-container class="conduces-container">
+
+  <mat-sidenav mode="side" opened class="conduces-sidenav">
+
+    <div class="c-logo">
+      <div class="c-logo-icon">
+        <mat-icon>directions_bus</mat-icon>
+      </div>
+      <div>
+        <h2 class="c-logo-title">Conduces</h2>
+        <span class="c-logo-sub">Terminal de Transporte</span>
+      </div>
+    </div>
+
+    <div class="c-divider"></div>
+
+    <nav class="c-nav">
+      <p class="c-nav-label">General</p>
+
+      <a mat-button routerLink="dashboard" routerLinkActive="c-active">
+        <mat-icon>dashboard</mat-icon>
+        Dashboard
+      </a>
+
+      <a mat-button routerLink="admin" routerLinkActive="c-active">
+        <mat-icon>admin_panel_settings</mat-icon>
+        Administración
+      </a>
+
+      <p class="c-nav-label">Registro</p>
+
+      <a *ngIf="isAdmin" mat-button routerLink="create-vehicle" routerLinkActive="c-active">
+        <mat-icon>directions_car</mat-icon>
+        Crear Vehículo
+      </a>
+
+      <a mat-button routerLink="create-driver" routerLinkActive="c-active">
+        <mat-icon>person_add</mat-icon>
+        Crear Conductor
+      </a>
+    </nav>
+
+    <div class="c-sidenav-footer">
+      <mat-icon>local_shipping</mat-icon>
+      <span>Facturación de Viajes</span>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <mat-toolbar class="c-toolbar">
+      <mat-icon class="c-toolbar-icon">confirmation_number</mat-icon>
+      <div class="c-toolbar-brand">
+        <span class="c-toolbar-title">Conduces</span>
+        <span class="c-toolbar-sub">Sistema de Facturación</span>
+      </div>
+
+      <span style="flex:1"></span>
+
+      <div *ngIf="username" class="c-user-chip">
+        <mat-icon>account_circle</mat-icon>
+        <span>{{ username }}</span>
+      </div>
+
+      <button mat-stroked-button class="c-logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Salir
+      </button>
+    </mat-toolbar>
+
+    <div class="c-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

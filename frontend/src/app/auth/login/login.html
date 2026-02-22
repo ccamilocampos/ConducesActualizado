@@ -1,0 +1,23 @@
+<div style="max-width: 300px; margin: 100px auto;">
+  <h2>Login</h2>
+
+  <input
+    type="text"
+    placeholder="Username"
+    [(ngModel)]="username"
+  />
+
+  <br /><br />
+
+  <input
+    type="password"
+    placeholder="Password"
+    [(ngModel)]="password"
+  />
+
+  <br /><br />
+
+  <button (click)="login()">Login</button>
+
+  <p style="color:red">{{ errorMessage }}</p>
+</div>

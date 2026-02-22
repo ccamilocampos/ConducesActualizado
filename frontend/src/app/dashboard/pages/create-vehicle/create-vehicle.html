@@ -1,0 +1,81 @@
+<div class="cv-wrapper">
+  <mat-card class="cv-card">
+
+    <div class="cv-header">
+      <div class="cv-header-icon">
+        <mat-icon>directions_car</mat-icon>
+      </div>
+      <div>
+        <h2 class="cv-title">Crear Vehículo</h2>
+        <span class="cv-subtitle">Registro de unidad de transporte</span>
+      </div>
+    </div>
+
+    <div class="cv-divider"></div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" #formDir="ngForm"  class="cv-form">
+
+      <div class="cv-row">
+        <mat-form-field appearance="outline" class="cv-field">
+          <mat-label>Placa</mat-label>
+          <mat-icon matPrefix>pin</mat-icon>
+          <input matInput formControlName="plate" placeholder="Ej: ABC-123" [readonly]="isUpdateMode">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="cv-field">
+          <mat-label>Año</mat-label>
+          <mat-icon matPrefix>calendar_today</mat-icon>
+          <input matInput type="number" formControlName="year" placeholder="Ej: 2022">
+        </mat-form-field>
+      </div>
+
+      <div class="cv-row">
+        <mat-form-field appearance="outline" class="cv-field">
+          <mat-label>Marca</mat-label>
+          <mat-icon matPrefix>directions_bus</mat-icon>
+          <input matInput formControlName="brand" placeholder="Ej: Chevrolet">
+        </mat-form-field>
+
+        <!--<mat-form-field appearance="outline" class="cv-field">
+          <mat-label>Modelo</mat-label>
+          <mat-icon matPrefix>car_repair</mat-icon>
+          <input matInput formControlName="model" placeholder="Ej: NHR 55L">
+        </mat-form-field>-->
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Modelo</mat-label>
+
+          <mat-select formControlName="model">
+            <mat-option *ngFor="let m of models"
+                        [value]="m.description">
+              {{ m.description }}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+      </div>
+
+      <div class="cv-error" *ngIf="errorMessage">
+        <mat-icon>error_outline</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <div class="cv-actions">
+        <button mat-stroked-button type="button"  class="cv-btn-clear" (click)="resetForm()">
+          <mat-icon>cleaning_services</mat-icon>
+          Limpiar
+        </button>
+        <button mat-stroked-button type="button" class="cv-btn-cancel" routerLink="/dashboard">
+          <mat-icon>arrow_back</mat-icon>
+          Cancelar
+        </button>
+        <button mat-raised-button type="submit" class="cv-btn-submit" [disabled]="form.invalid">
+          <mat-icon>save</mat-icon>
+          {{ isUpdateMode ? 'Actualizar' : 'Guardar' }}
+        </button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

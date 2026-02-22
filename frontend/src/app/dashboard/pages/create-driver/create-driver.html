@@ -1,0 +1,103 @@
+<div class="cv-wrapper">
+  <mat-card class="cv-card">
+
+    <div class="cv-header">
+      <div class="cv-header-icon">
+        <mat-icon>assignment_ind</mat-icon>
+      </div>
+      <div>
+        <h2 class="cv-title">Crear Conductor</h2>
+        <span class="cv-subtitle">Registro de conductores</span>
+      </div>
+    </div>
+
+    <div class="cv-divider"></div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" #formDir="ngForm"  class="cv-form">
+
+      <div class="cv-row">
+        <mat-form-field appearance="outline" class="cv-field">
+          <mat-label>Cedula</mat-label>
+          <mat-icon matPrefix>pin</mat-icon>
+          <input matInput formControlName="identification"  maxlength="12"
+                 inputmode="numeric"
+                 (keypress)="allowOnlyNumbers($event)" placeholder="" [readonly]="isUpdateMode">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="cv-field">
+          <mat-label>Tipo de identificación</mat-label>
+
+          <mat-select formControlName="type_id">
+            <mat-option *ngFor="let m of models"
+                        [value]="m.description">
+              {{ m.description }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="cv-row">
+      <mat-form-field appearance="outline" class="cv-field">
+        <mat-label>Nombre</mat-label>
+        <mat-icon matPrefix>calendar_today</mat-icon>
+        <input matInput formControlName="name" placeholder="" maxlength="50"
+               (keypress)="allowOnlyLetters($event)">
+      </mat-form-field>
+      </div>
+
+
+<div class="cv-row">
+        <mat-form-field appearance="outline" class="cv-field">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <mat-icon matPrefix>cake</mat-icon>
+
+          <input matInput
+                 [matDatepicker]="picker"
+                 formControlName="year_born"
+                 [min]="minDate"
+                 [max]="maxDate"
+                 readonly
+                 (keydown)="$event.preventDefault()"> <!--para evitar que peguen datos-->
+
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="cv-field">
+          <mat-label>Año de expedición</mat-label>
+          <mat-icon matPrefix>car_repair</mat-icon>
+          <input matInput formControlName="year_id" placeholder="" maxlength="4"
+                 inputmode="numeric"
+                 (keypress)="allowOnlyNumbers($event)">
+        </mat-form-field>
+
+
+      </div>
+
+      <div class="cv-actions">
+        <button mat-stroked-button type="button"  class="cv-btn-clear" (click)="resetForm()">
+          <mat-icon>cleaning_services</mat-icon>
+          Limpiar
+        </button>
+        <button mat-stroked-button type="button" class="cv-btn-cancel" routerLink="/dashboard">
+          <mat-icon>arrow_back</mat-icon>
+          Cancelar
+        </button>
+        <button mat-raised-button type="submit" class="cv-btn-submit" [disabled]="form.invalid">
+          <mat-icon>save</mat-icon>
+          {{ isUpdateMode ? 'Actualizar' : 'Guardar' }}
+        </button>
+      </div>
+      <div class="cv-error" *ngIf="errorMessage">
+        <mat-icon>error_outline</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+
+
+    </form>
+  </mat-card>
+</div>
